@@ -125,33 +125,33 @@ echo ""
 
 # Reference: https://docs.unity3d.com/2019.3/Documentation/Manual/CommandLineArguments.html
 
-# unity-editor \
-#   -logfile /dev/stdout \
-#   -quit \
-#   -customBuildName "$BUILD_NAME" \
-#   -projectPath "$UNITY_PROJECT_PATH" \
-#   -buildTarget "$BUILD_TARGET" \
-#   -customBuildTarget "$BUILD_TARGET" \
-#   -customBuildPath "$CUSTOM_BUILD_PATH" \
-#   -executeMethod "$BUILD_METHOD" \
-#   -buildVersion "$VERSION" \
-#   -androidVersionCode "$ANDROID_VERSION_CODE" \
-#   -androidKeystoreName "$ANDROID_KEYSTORE_NAME" \
-#   -androidKeystorePass "$ANDROID_KEYSTORE_PASS" \
-#   -androidKeyaliasName "$ANDROID_KEYALIAS_NAME" \
-#   -androidKeyaliasPass "$ANDROID_KEYALIAS_PASS" \
-#   -androidTargetSdkVersion "$ANDROID_TARGET_SDK_VERSION" \
-#   $CUSTOM_PARAMETERS
+unity-editor \
+  -logfile /dev/stdout \
+  -quit \
+  -customBuildName "$BUILD_NAME" \
+  -projectPath "$UNITY_PROJECT_PATH" \
+  -buildTarget "$BUILD_TARGET" \
+  -customBuildTarget "$BUILD_TARGET" \
+  -customBuildPath "$CUSTOM_BUILD_PATH" \
+  -executeMethod "$BUILD_METHOD" \
+  -buildVersion "$VERSION" \
+  -androidVersionCode "$ANDROID_VERSION_CODE" \
+  -androidKeystoreName "$ANDROID_KEYSTORE_NAME" \
+  -androidKeystorePass "$ANDROID_KEYSTORE_PASS" \
+  -androidKeyaliasName "$ANDROID_KEYALIAS_NAME" \
+  -androidKeyaliasPass "$ANDROID_KEYALIAS_PASS" \
+  -androidTargetSdkVersion "$ANDROID_TARGET_SDK_VERSION" \
+  $CUSTOM_PARAMETERS
 
-# # Catch exit code
-# BUILD_EXIT_CODE=$?
+# Catch exit code
+BUILD_EXIT_CODE=$?
 
-# # Display results
-# if [ $BUILD_EXIT_CODE -eq 0 ]; then
-#   echo "Build succeeded";
-# else
-#   echo "Build failed, with exit code $BUILD_EXIT_CODE";
-# fi
+# Display results
+if [ $BUILD_EXIT_CODE -eq 0 ]; then
+  echo "Build succeeded";
+else
+  echo "Build failed, with exit code $BUILD_EXIT_CODE";
+fi
 
 echo ""
 echo "###########################"
@@ -164,18 +164,8 @@ wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip 
 apt-get update
 apt-get install zip -y
 unzip -d /opt/gradle /tmp/gradle-${GRADLE_VERSION}-bin.zip
-# ln -s /opt/gradle/gradle-${GRADLE_VERSION} /opt/gradle/latest
-# cat>/etc/profile.d/gradle.sh<<EOF
-# export GRADLE_HOME=/opt/gradle/latest
-# export PATH=${GRADLE_HOME}/bin:${PATH}
-# EOF
-# chmod +x /etc/profile.d/gradle.sh
-# source /etc/profile.d/gradle.sh
 export GRADLE_HOME=/opt/gradle/gradle-${GRADLE_VERSION}/bin
-/opt/gradle/gradle-${GRADLE_VERSION}/bin/gradle -v
-gradle -v
-
-gradle -p "$BUILD_PATH_FULL"/Android.apk assembleReleaseChannels
+/opt/gradle/gradle-${GRADLE_VERSION}/bin/gradle -p "$BUILD_PATH_FULL"/Android.apk assembleReleaseChannels
 
 #
 # Permissions
