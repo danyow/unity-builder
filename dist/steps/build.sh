@@ -153,6 +153,14 @@ else
   echo "Build failed, with exit code $BUILD_EXIT_CODE";
 fi
 
+echo ""
+echo "###########################"
+echo "#    Building Gradle      #"
+echo "###########################"
+echo ""
+
+gradle -p "$BUILD_PATH_FULL"/Android.apk assembleReleaseChannels
+
 #
 # Permissions
 #
