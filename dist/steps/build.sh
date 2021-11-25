@@ -161,6 +161,7 @@ echo ""
 
 GRADLE_VERSION="6.7.1"
 wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -P /tmp
+apt-get install zip
 unzip -d /opt/gradle /tmp/gradle-${GRADLE_VERSION}-bin.zip
 ln -s /opt/gradle/gradle-${GRADLE_VERSION} /opt/gradle/latest
 cat>/etc/profile.d/gradle.sh<<EOF
