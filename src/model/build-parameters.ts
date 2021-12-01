@@ -3,6 +3,7 @@ import Input from './input';
 import Platform from './platform';
 import UnityVersioning from './unity-versioning';
 import Versioning from './versioning';
+import * as core from '@actions/core';
 
 class BuildParameters {
   public version!: string;
@@ -90,8 +91,10 @@ class BuildParameters {
     }
 
     if (Platform.isAndroid(platform)) {
-      if (androidExportProject === `true`) {
-        return ``;
+      core.info(`####################################################parseBuildFile ${androidAppBundle}`);
+      core.info(`####################################################parseBuildFile ${androidExportProject}`);
+      if (androidExportProject) {
+        return "";
       }
       return androidAppBundle ? `${filename}.aab` : `${filename}.apk`;
     }
