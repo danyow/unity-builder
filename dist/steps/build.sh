@@ -165,7 +165,7 @@ apt-get update
 apt-get install zip -y
 unzip -d /opt/gradle /tmp/gradle-${GRADLE_VERSION}-bin.zip
 export GRADLE_HOME=/opt/gradle/gradle-${GRADLE_VERSION}/bin
-/opt/gradle/gradle-${GRADLE_VERSION}/bin/gradle -p "$BUILD_PATH_FULL"/Android.apk assembleReleaseChannels
+/opt/gradle/gradle-${GRADLE_VERSION}/bin/gradle -p "$BUILD_PATH_FULL" assembleReleaseChannels
 
 #
 # Permissions
