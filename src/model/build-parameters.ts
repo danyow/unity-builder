@@ -90,7 +90,7 @@ class BuildParameters {
     }
 
     if (Platform.isAndroid(platform)) {
-      if (androidExportProject) {
+      if (androidExportProject === `true`) {
         return ``;
       }
       return androidAppBundle ? `${filename}.aab` : `${filename}.apk`;
