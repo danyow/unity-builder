@@ -18,5 +18,3 @@ RUN chmod +x /entrypoint.sh
 RUN ls
 
 ENTRYPOINT ["/entrypoint.sh"]
-
-RUN chown $UID:$GID -R /opt/unity/
