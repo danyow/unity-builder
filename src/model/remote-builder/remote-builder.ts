@@ -41,8 +41,8 @@ class RemoteBuilder {
         await RemoteBuilder.DeployToSteam(buildUid, buildParameters, defaultSecretsArray);
       }
     } catch (error) {
-      core.setFailed(error);
-      core.error(error);
+      // core.setFailed(error);
+      // core.error(error);
     }
   }
 

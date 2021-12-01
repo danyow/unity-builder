@@ -58,8 +58,8 @@ class AWSBuildRunner {
         cluster,
       }).promise();
       core.info(`Task has ended ${describeTasks.tasks?.[0].containers?.[0].lastStatus}`);
-      core.setFailed(error);
-      core.error(error);
+      // core.setFailed(error);
+      // core.error(error);
     }
     core.info(`Task is running on worker cluster`);
     await this.streamLogsUntilTaskStops(ECS, CF, taskDef, cluster, taskArn, streamName);
