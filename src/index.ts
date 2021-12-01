@@ -8,7 +8,9 @@ async function run() {
 
     const { dockerfile, workspace, actionFolder } = Action;
 
+    core.info('BuildParameters.create');
     const buildParameters = await BuildParameters.create();
+    core.info('BuildParameters.create done!##');
     const baseImage = new ImageTag(buildParameters);
     let builtImage;
 
