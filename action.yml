@@ -78,6 +78,10 @@ inputs:
     required: false
     default: 'false'
     description: 'Whether to build .aab instead of .apk'
+  androidExportProject:
+    required: false
+    default: 'false'
+    description: 'Whether to exprot project'
   androidKeystoreName:
     required: false
     default: ''

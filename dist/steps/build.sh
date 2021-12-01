@@ -153,19 +153,23 @@ else
   echo "Build failed, with exit code $BUILD_EXIT_CODE";
 fi
 
-echo ""
-echo "###########################"
-echo "#    Building Gradle      #"
-echo "###########################"
-echo ""
+if [[ $ANDROID_EXPORT_PROJECT == "true" ]]
 
-GRADLE_VERSION="6.7.1"
-wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -P /tmp
-apt-get update
-apt-get install zip -y
-unzip -d /opt/gradle /tmp/gradle-${GRADLE_VERSION}-bin.zip
-export GRADLE_HOME=/opt/gradle/gradle-${GRADLE_VERSION}/bin
-/opt/gradle/gradle-${GRADLE_VERSION}/bin/gradle -p "$BUILD_PATH_FULL" assembleReleaseChannels
+  echo ""
+  echo "###########################"
+  echo "#    Building Gradle      #"
+  echo "###########################"
+  echo ""
+
+  GRADLE_VERSION="6.7.1"
+  wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -P /tmp
+  apt-get update
+  apt-get install zip -y
+  unzip -d /opt/gradle /tmp/gradle-${GRADLE_VERSION}-bin.zip
+  # export GRADLE_HOME=/opt/gradle/gradle-${GRADLE_VERSION}/bin
+  /opt/gradle/gradle-${GRADLE_VERSION}/bin/gradle -p "$BUILD_PATH_FULL" assembleReleaseChannels
+
+fi
 
 #
 # Permissions

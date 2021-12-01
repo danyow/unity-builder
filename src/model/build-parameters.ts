@@ -22,6 +22,7 @@ class BuildParameters {
   public androidKeyaliasName!: string;
   public androidKeyaliasPass!: string;
   public androidTargetSdkVersion!: string;
+  public androidExportProject!: string;
   public androidSdkManagerParameters!: string;
   public customParameters!: string;
   public sshAgent!: string;
@@ -37,7 +38,7 @@ class BuildParameters {
   public chownFilesTo!: string;
 
   static async create(): Promise<BuildParameters> {
-    const buildFile = this.parseBuildFile(Input.buildName, Input.targetPlatform, Input.androidAppBundle);
+    const buildFile = this.parseBuildFile(Input.buildName, Input.targetPlatform, Input.androidAppBundle, Input.androidExportProject);
 
     const unityVersion = UnityVersioning.determineUnityVersion(Input.projectPath, Input.unityVersion);
 
@@ -66,6 +67,7 @@ class BuildParameters {
       androidKeyaliasName: Input.androidKeyaliasName,
       androidKeyaliasPass: Input.androidKeyaliasPass,
       androidTargetSdkVersion: Input.androidTargetSdkVersion,
+      androidExportProject: Input.androidExportProject ? "true" : "false",
       androidSdkManagerParameters,
       customParameters: Input.customParameters,
       sshAgent: Input.sshAgent,
@@ -82,12 +84,15 @@ class BuildParameters {
     };
   }
 
-  static parseBuildFile(filename, platform, androidAppBundle) {
+  static parseBuildFile(filename, platform, androidAppBundle, androidExportProject) {
     if (Platform.isWindows(platform)) {
       return `${filename}.exe`;
     }
 
     if (Platform.isAndroid(platform)) {
+      if (androidExportProject) {
+        return ``;
+      }
       return androidAppBundle ? `${filename}.aab` : `${filename}.apk`;
     }
 

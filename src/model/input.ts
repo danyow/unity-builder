@@ -55,6 +55,12 @@ class Input {
     return input === 'true';
   }
 
+  static get androidExportProject() {
+    const input = core.getInput('androidExportProject') || false;
+
+    return input === 'true';
+  }
+
   static get androidKeystoreName() {
     return core.getInput('androidKeystoreName') || '';
   }
