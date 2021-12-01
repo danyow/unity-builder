@@ -153,7 +153,7 @@ else
   echo "Build failed, with exit code $BUILD_EXIT_CODE";
 fi
 
-if [[ $ANDROID_EXPORT_PROJECT == "true" ]] then
+if [[ $ANDROID_EXPORT_PROJECT == "true" ]]; then
 
   echo ""
   echo "###########################"
